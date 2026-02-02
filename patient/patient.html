@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Patient Dashboard</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div class="dashboard">
+    <aside class="sidebar">
+        <h2>NextGen Health</h2>
+        <p>Patient Panel</p>
+
+        <ul>
+            <li class="active">Dashboard</li>
+            <li>Appointments</li>
+            <li onclick="logout()">Logout</li>
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <div class="top-bar">
+            <h1>Welcome, John 👋</h1>
+            <button class="btn primary">+ Book Appointment</button>
+        </div>
+
+        <div class="cards">
+            <div class="card">
+                <h3>Total Appointments</h3>
+                <p>24</p>
+            </div>
+            <div class="card">
+                <h3>Upcoming</h3>
+                <p>3</p>
+            </div>
+            <div class="card">
+                <h3>Completed</h3>
+                <p>21</p>
+            </div>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Doctor</th>
+                    <th>Department</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>30 Jan 2026</td>
+                    <td>Dr. Sarah</td>
+                    <td>Cardiology</td>
+                    <td>Confirmed</td>
+                    <td><button class="btn danger">Cancel</button></td>
+                </tr>
+                <tr>
+                    <td>05 Feb 2026</td>
+                    <td>Dr. Chen</td>
+                    <td>Orthopedics</td>
+                    <td>Pending</td>
+                    <td><button class="btn danger">Cancel</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+</div>
+
+
+<!-- Book Appointment Modal -->
+<div id="bookingModal" class="modal">
+    <div class="modal-content">
+        <h2>Book Appointment</h2>
+
+        <form id="bookingForm">
+            <label>Department</label>
+            <select required>
+                <option value="">Select</option>
+                <option>Cardiology</option>
+                <option>Orthopedics</option>
+                <option>Dermatology</option>
+            </select>
+
+            <label>Doctor</label>
+            <select required>
+                <option value="">Select</option>
+                <option>Dr. Sarah</option>
+                <option>Dr. Chen</option>
+                <option>Dr. Emily</option>
+            </select>
+
+            <label>Date</label>
+            <input type="date" required>
+
+            <div class="modal-actions">
+                <button type="submit" class="btn primary">Submit</button>
+                <button type="button" class="btn danger" onclick="closeModal()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="patient.js"></script>
+
+</body>
+</html>

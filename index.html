@@ -2,14 +2,50 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>NextGen Healthcare | Login</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Crimson+Pro:wght@600;700&display=swap" rel="stylesheet">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-<<<<<<< HEAD
-    <h1>Home page</h1>
-=======
-    <h2>kjhertkjhertkjhertkjherthkjhkerjhtkejrtkjerhtkjehrktjherkjthekrjthkejhtkjehtjkehrtjehrtkejrhtkjehrtkjerhtkjehrtkjerhhtkjerhhtkejrhhtkejrthkerhthkjerhkehtkjerhtkjehrktehrtkhhertkjhekrhtkjehrtkjehrtkjehrthertjkherkthkehtrkejrth</h2>
->>>>>>> 27c9e51c05c20c246252475d59fb68ee2f5deabc
+
+<div class="page active">
+    <div class="login-container">
+        <div class="login-box">
+            <div class="logo">
+                <h1>NextGen Healthcare</h1>
+                <p>Comprehensive Appointment Management</p>
+            </div>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>Username or Email</label>
+                    <input type="text" id="username" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Login As</label>
+                    <select id="userType" required>
+                        <option value="">Select</option>
+                        <option value="patient">Patient</option>
+                        <option value="doctor">Doctor</option>
+                    </select>
+                </div>
+
+                <button class="btn btn-primary" type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="assets/js/auth.js"></script>
 </body>
 </html>
