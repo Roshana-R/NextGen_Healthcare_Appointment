@@ -70,4 +70,43 @@ router.post("/login", async (req, res) => {
 });
 
 
+router.get("/:id", async (req, res) => {
+
+    try {
+
+        const patient =
+            await Patient.findById(req.params.id);
+
+
+        if (!patient) {
+
+            return res.status(404).json({
+
+                message: "Patient not found"
+
+            });
+
+        }
+
+
+        res.json(patient);
+
+
+    } catch (error) {
+
+        console.log(error);
+
+
+        res.status(500).json({
+
+            message: "Failed to get patient profile",
+
+            error: error.message
+
+        });
+
+    }
+
+});
+
 module.exports = router;
