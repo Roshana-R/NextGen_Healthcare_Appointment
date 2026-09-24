@@ -11,6 +11,7 @@ router.post("/", async (req, res) => {
     try {
 
         const {
+            patientId,
             patientName,
             age,
             mobile,
@@ -22,9 +23,25 @@ router.post("/", async (req, res) => {
         } = req.body;
 
 
-        let patient = await Patient.findOne({
-            mobile: mobile
-        });
+        let patient;
+
+
+        if (patientId) {
+
+            patient =
+                await Patient.findById(patientId);
+
+        }
+
+
+        if (!patient) {
+
+            patient =
+                await Patient.findOne({
+                    mobile: mobile
+                });
+
+        }
 
 
         if (!patient) {
@@ -43,21 +60,30 @@ router.post("/", async (req, res) => {
         }
 
 
-        const appointment = new Appointment({
+        const appointment =
+            new Appointment({
 
-            patient: patient._id,
-            hospital: hospital,
-            doctor: doctor,
-            department: department,
-            appointmentDate: appointmentDate
+                patient: patient._id,
 
-        });
+                hospital: hospital,
+
+                doctor: doctor,
+
+                department: department,
+
+                appointmentDate: appointmentDate
+
+            });
 
 
-        const savedAppointment = await appointment.save();
+        const savedAppointment =
+            await appointment.save();
 
 
-        const result = await Appointment.findById(savedAppointment._id)
+        const result =
+            await Appointment.findById(
+                savedAppointment._id
+            )
             .populate("patient")
             .populate("hospital")
             .populate("doctor");
@@ -65,7 +91,8 @@ router.post("/", async (req, res) => {
 
         res.status(201).json({
 
-            message: "Appointment booked successfully",
+            message:
+                "Appointment booked successfully",
 
             appointment: result
 
@@ -76,11 +103,14 @@ router.post("/", async (req, res) => {
 
         console.log(error);
 
+
         res.status(500).json({
 
-            message: "Failed to book appointment",
+            message:
+                "Failed to book appointment",
 
-            error: error.message
+            error:
+                error.message
 
         });
 
@@ -93,20 +123,44 @@ router.get("/", async (req, res) => {
 
     try {
 
-        const appointments = await Appointment.find()
-            .populate("patient")
-            .populate("hospital")
-            .populate("doctor");
+        const { patientId } = req.query;
+
+        let appointments;
+
+
+        if (patientId) {
+
+            appointments =
+                await Appointment.find({
+                    patient: patientId
+                })
+                .populate("patient")
+                .populate("hospital")
+                .populate("doctor");
+
+        } else {
+
+            appointments =
+                await Appointment.find()
+                .populate("patient")
+                .populate("hospital")
+                .populate("doctor");
+
+        }
+
 
         res.json(appointments);
+
 
     } catch (error) {
 
         res.status(500).json({
 
-            message: "Failed to get appointments",
+            message:
+                "Failed to get appointments",
 
-            error: error.message
+            error:
+                error.message
 
         });
 
@@ -119,26 +173,28 @@ router.put("/:id/cancel", async (req, res) => {
 
     try {
 
-        const appointment = await Appointment.findByIdAndUpdate(
+        const appointment =
+            await Appointment.findByIdAndUpdate(
 
-            req.params.id,
+                req.params.id,
 
-            {
-                status: "Cancelled"
-            },
+                {
+                    status: "Cancelled"
+                },
 
-            {
-                new: true
-            }
+                {
+                    new: true
+                }
 
-        );
+            );
 
 
         if (!appointment) {
 
             return res.status(404).json({
 
-                message: "Appointment not found"
+                message:
+                    "Appointment not found"
 
             });
 
@@ -152,9 +208,11 @@ router.put("/:id/cancel", async (req, res) => {
 
         res.status(500).json({
 
-            message: "Failed to cancel appointment",
+            message:
+                "Failed to cancel appointment",
 
-            error: error.message
+            error:
+                error.message
 
         });
 
@@ -167,7 +225,8 @@ router.put("/:id/status", async (req, res) => {
 
     try {
 
-        const { status } = req.body;
+        const { status } =
+            req.body;
 
 
         if (
@@ -177,7 +236,8 @@ router.put("/:id/status", async (req, res) => {
 
             return res.status(400).json({
 
-                message: "Invalid status"
+                message:
+                    "Invalid status"
 
             });
 
@@ -204,7 +264,8 @@ router.put("/:id/status", async (req, res) => {
 
             return res.status(404).json({
 
-                message: "Appointment not found"
+                message:
+                    "Appointment not found"
 
             });
 
@@ -216,7 +277,8 @@ router.put("/:id/status", async (req, res) => {
             message:
                 "Appointment status updated successfully",
 
-            appointment: appointment
+            appointment:
+                appointment
 
         });
 
@@ -231,12 +293,14 @@ router.put("/:id/status", async (req, res) => {
             message:
                 "Failed to update appointment status",
 
-            error: error.message
+            error:
+                error.message
 
         });
 
     }
 
 });
+
 
 module.exports = router;
