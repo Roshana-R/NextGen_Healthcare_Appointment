@@ -781,3 +781,28 @@ body {
     margin-top: 20px;
 }
 
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+.status-pending {
+    color: orange;
+    font-weight: 600;
+}
+
+.status-confirmed {
+    color: green;
+    font-weight: 600;
+}
+
+.status-completed {
+    color: blue;
+    font-weight: 600;
+}
+
+.status-cancelled {
+    color: red;
+    font-weight: 600;
+}
