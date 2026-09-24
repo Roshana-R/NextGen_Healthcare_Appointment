@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Doctor Profile</title>
+
+    <link
+        rel="stylesheet"
+        href="../assets/css/style.css"
+    >
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <aside class="sidebar">
+
+        <h2>NextGen Health</h2>
+
+        <p>Doctor Panel</p>
+
+        <ul>
+
+            <li onclick="goDashboard()">
+                Dashboard
+            </li>
+
+            <li onclick="goRequests()">
+                Patient Requests
+            </li>
+
+            <li class="active">
+                Profile
+            </li>
+
+            <li onclick="logout()">
+                Logout
+            </li>
+
+        </ul>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <div class="top-bar">
+
+            <h1>My Profile 👨‍⚕️</h1>
+
+        </div>
+
+
+        <div class="profile-card">
+
+            <div class="profile-header">
+
+                <div class="profile-avatar">
+                    👨‍⚕️
+                </div>
+
+                <div>
+
+                    <h2 id="doctorName">
+                        Loading...
+                    </h2>
+
+                    <p>
+                        Doctor
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="profile-details">
+
+                <div class="profile-item">
+
+                    <span>Name</span>
+
+                    <strong id="name">
+                        Loading...
+                    </strong>
+
+                </div>
+
+
+                <div class="profile-item">
+
+                    <span>Department</span>
+
+                    <strong id="department">
+                        Loading...
+                    </strong>
+
+                </div>
+
+
+                <div class="profile-item">
+
+                    <span>Hospital</span>
+
+                    <strong id="hospital">
+                        Loading...
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<script src="profile.js"></script>
+
+</body>
+
+</html>

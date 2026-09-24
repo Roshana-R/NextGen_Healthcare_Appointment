@@ -97,12 +97,86 @@ document.getElementById("loginForm").addEventListener(
 
             }
 
-        } else {
+        }else {
 
-            window.location.href =
-                "doctor/doctor.html";
+                const doctorName =
+                    prompt("Enter your doctor name");
 
-        }
+
+                if (!doctorName) {
+
+                    return;
+
+                }
+
+
+                try {
+
+                    const response =
+                        await fetch(
+                            "http://localhost:5000/api/doctors/login",
+                            {
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json"
+                                },
+
+                                body: JSON.stringify({
+                                    name: doctorName
+                                })
+                            }
+                        );
+
+
+                    const data =
+                        await response.json();
+
+
+                    if (!response.ok) {
+
+                        alert(
+                            data.message ||
+                            "Doctor not found"
+                        );
+
+                        return;
+
+                    }
+
+
+                    localStorage.setItem(
+                        "doctorId",
+                        data.doctor._id
+                    );
+
+
+                    localStorage.setItem(
+                        "doctorName",
+                        data.doctor.name
+                    );
+
+
+                    window.location.href =
+                        "doctor/doctor.html";
+
+
+                } catch (error) {
+
+                    console.log(
+                        "Doctor login error:",
+                        error
+                    );
+
+
+                    alert(
+                        "Unable to connect to server"
+                    );
+
+                }
+
+            }
 
     }
 );

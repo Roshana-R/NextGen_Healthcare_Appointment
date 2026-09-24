@@ -14,9 +14,18 @@ function showDoctorSection(section) {
 }
 
 
+function openProfile() {
+
+    window.location.href =
+        "profile.html";
+
+}
+
+
 function logout() {
 
-    window.location.href = "../index.html";
+    window.location.href =
+        "../index.html";
 
 }
 
@@ -63,12 +72,6 @@ async function loadAppointments() {
                     : "Unknown";
 
 
-            const doctor =
-                appointment.doctor
-                    ? appointment.doctor.name
-                    : "Unknown";
-
-
             const department =
                 appointment.department;
 
@@ -81,6 +84,64 @@ async function loadAppointments() {
 
             const status =
                 appointment.status || "Pending";
+
+
+            let actionButtons = "";
+
+
+            if (status === "Pending") {
+
+                actionButtons = `
+
+                    <button
+                        class="btn primary"
+                        onclick="approve(this, '${appointment._id}')"
+                    >
+                        Approve
+                    </button>
+
+                    <button
+                        class="btn danger"
+                        onclick="reject(this, '${appointment._id}')"
+                    >
+                        Reject
+                    </button>
+
+                `;
+
+            }
+
+
+            else if (status === "Confirmed") {
+
+                actionButtons = `
+
+                    <button
+                        class="btn primary"
+                        disabled
+                    >
+                        Approved
+                    </button>
+
+                `;
+
+            }
+
+
+            else if (status === "Cancelled") {
+
+                actionButtons = `
+
+                    <button
+                        class="btn danger"
+                        disabled
+                    >
+                        Rejected
+                    </button>
+
+                `;
+
+            }
 
 
             row.innerHTML = `
@@ -102,21 +163,7 @@ async function loadAppointments() {
                 </td>
 
                 <td>
-
-                    <button
-                        class="btn primary"
-                        onclick="approve(this, '${appointment._id}')"
-                    >
-                        Approve
-                    </button>
-
-                    <button
-                        class="btn danger"
-                        onclick="reject(this, '${appointment._id}')"
-                    >
-                        Reject
-                    </button>
-
+                    ${actionButtons}
                 </td>
 
             `;
@@ -154,7 +201,8 @@ async function updateAppointmentStatus(
                     method: "PUT",
 
                     headers: {
-                        "Content-Type": "application/json"
+                        "Content-Type":
+                            "application/json"
                     },
 
                     body: JSON.stringify({
@@ -198,6 +246,22 @@ async function updateAppointmentStatus(
         });
 
 
+        if (status === "Confirmed") {
+
+            button.innerText =
+                "Approved";
+
+        }
+
+
+        if (status === "Cancelled") {
+
+            button.innerText =
+                "Rejected";
+
+        }
+
+
         alert(
             "Appointment " + status
         );
@@ -209,6 +273,7 @@ async function updateAppointmentStatus(
             "Error updating appointment:",
             error
         );
+
 
         alert(
             "Failed to update appointment"

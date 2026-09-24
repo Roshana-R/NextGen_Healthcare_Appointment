@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Patient Profile</title>
+
+    <link
+        rel="stylesheet"
+        href="../assets/css/style.css"
+    >
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <aside class="sidebar">
+
+        <h2>NextGen Health</h2>
+
+        <p>Patient Panel</p>
+
+        <ul>
+
+            <li onclick="goDashboard()">
+                Dashboard
+            </li>
+
+            <li onclick="goAppointments()">
+                Appointments
+            </li>
+
+            <li class="active">
+                Profile
+            </li>
+
+            <li onclick="logout()">
+                Logout
+            </li>
+
+        </ul>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <div class="top-bar">
+
+            <h1>My Profile 👤</h1>
+
+        </div>
+
+
+        <div class="profile-card">
+
+            <div class="profile-header">
+
+                <div class="profile-avatar">
+                    👤
+                </div>
+
+                <div>
+
+                    <h2 id="patientName">
+                        Loading...
+                    </h2>
+
+                    <p>
+                        Patient
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="profile-details">
+
+                <div class="profile-item">
+
+                    <span>Name</span>
+
+                    <strong id="name">
+                        Loading...
+                    </strong>
+
+                </div>
+
+
+                <div class="profile-item">
+
+                    <span>Age</span>
+
+                    <strong id="age">
+                        Loading...
+                    </strong>
+
+                </div>
+
+
+                <div class="profile-item">
+
+                    <span>Mobile</span>
+
+                    <strong id="mobile">
+                        Loading...
+                    </strong>
+
+                </div>
+
+
+                <div class="profile-item">
+
+                    <span>Email</span>
+
+                    <strong id="email">
+                        Loading...
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<script src="profile.js"></script>
+
+</body>
+
+</html>

@@ -25,6 +25,13 @@ function logout() {
 }
 
 
+function openProfile() {
+
+    window.location.href ="profile.html";
+
+}
+
+
 const hospitalSelect =
     document.getElementById("hospital");
 
